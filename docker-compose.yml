@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    image: 'postgres:latest'
+    environment:
+      POSTGRES_USER: root 
+      POSTGRES_PASSWORD: root 
+      POSTGRES_DB: tuesday-chatbot
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'pg_isready -U supertokens_user']
+      interval: 5s
+      timeout: 5s
+      retries: 5
